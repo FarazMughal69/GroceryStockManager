@@ -1,0 +1,135 @@
+﻿@model IEnumerable<GroceryStockManager.ViewModel.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+
+<script type="text/javascript">
+
+    function ClosePopUp() {
+        $('#AddProductModal').modal('hide');
+    }
+
+    function btnSave() {
+        var url = '@Url.Action("SaveProduct", "Product")';
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            dataType: "json",
+            data: $('#frmaddpricing').serialize(),
+            success: function (result) {
+                console.log(result)
+            }
+        });
+    }
+            function AddNewProduct() {
+                var url = '@Url.Action("AddNewProduct", "Product")';
+
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                    success: function (result) {
+                        $('#AddProductModal').modal('show');
+
+                        $('#AddProduct').html(result);
+                    }
+                });
+
+            }
+        
+
+</script>
+
+<div class="row">
+    <div class="col col-6">
+        <h1>Products</h1>
+
+
+    </div>
+
+    <div class="col col-6 d-flex justify-content-end">
+        <div class="d-flex align-items-center">
+            <a id="addProduct" onclick="AddNewProduct()" class="btn btn-primary">Add Product</a>
+           
+        </div>
+    </div>
+</div>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Supplier</th>
+            <th>Price</th>
+            <th>Unit</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Category</td>
+                <td>@item.Supplier</td>
+                <td>@item.Price</td>
+                <td>@item.Unit</td>
+                <td>@item.Description</td>
+                <td>
+                    <!-- Dropdown toggle -->
+                    <div class="dropdown">
+                        <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots"></i>
+                        </a>
+                        <!-- Dropdown menu -->
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="@Url.Action("Details", "Product", new { id = item.Id })">Details</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Edit", "Product", new { id = item.Id })">Edit</a></li>
+                            <li><a class="dropdown-item" href="@Url.Action("Delete", "Product", new { id = item.Id })">Delete</a></li>
+                        </ul>
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<!-- Modal Add Product -->
+<div class="modal fade" id="AddProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="RModalTitle">Add Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="text-left" id="addperror"></div>
+            <div class="modal-body">
+
+                @using (Html.BeginForm("", "", FormMethod.Post, new { id = "frmaddpricing", name = "frmaddpricing" }))
+                {
+                    <div id="AddProduct">
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  onclick="ClosePopUp()" data-dismiss="modal"><div class="glyphicon  glyphicon-off"> </div>Cancel</button>
+                <button type="button" id="btnsave" onclick="btnSave();" class="btn btn-primary"><div class="glyphicon glyphicon-ok"> </div>Save Pricing</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

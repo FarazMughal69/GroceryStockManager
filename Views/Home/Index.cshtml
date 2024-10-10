@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<style>
+    .headerDive {
+        text-align: center;
+        color: black;
+        background-color: cyan;
+        height: 150px;
+        display: flex; /* Use flexbox for vertical and horizontal centering */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        margin-bottom: 30px;
+    }
+
+    h1 {
+        text-align: center; /* Optional, but ensures text is centered within the h1 element */
+    }
+</style>
+
+<div class="headerDive ">
+        <h1>Grocery Stock Manager</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Welcome to Grocery Stock Manager</h2>
+        <p>
+            Grocery Stock Manager is a web application designed to help you manage
+            grocery products, inventory, suppliers, and stock levels efficiently
+            with the power of ASP.NET Core and Entity Framework Core.
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get Started Easily</h2>
+        <p>Follow our comprehensive guide to set up and manage your grocery inventory seamlessly.</p>
+        <p><a class="btn btn-default" href="#">Start Managing Your Stock &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Download the App</h2>
+        <p>You can download the completed project and source code from GitHub.</p>
+        <p><a class="btn btn-default" href="https://github.com/YourProject/GroceryStockManager">Download Source Code &raquo;</a></p>
+    </div>
+</div>

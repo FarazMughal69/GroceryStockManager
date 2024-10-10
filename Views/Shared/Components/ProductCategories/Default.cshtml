@@ -1,0 +1,5 @@
+﻿@model GroceryStockManager.ViewModel.DropdownViewModel
+
+<select class="form-control" name="@Model.Name" id="@Model.Name" asp-for="@Model.SelectedValue" asp-items="@Model.SelectListItems" disabled="@Model.IsDisabled">
+    <option value="">Please make a selection</option>
+</select>

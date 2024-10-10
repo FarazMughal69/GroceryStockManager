@@ -1,0 +1,60 @@
+﻿@model GroceryStockManager.ViewModel.ProductViewModel
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+       
+        $("#Suppliers").change(function () {
+            var selectedSupplier = $("#Suppliers").find(":selected").val();
+            $("#SupplierId").val(selectedSupplier);
+        });
+
+        $("#Categories").change(function () {
+            var selectedCategory = $("#Categories").find(":selected").val();
+            $("#CategoryId").val(selectedCategory);
+        });
+    });
+</script>
+
+
+
+<div class="col col-12 justify-content-center">
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control input-setup" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control input-setup" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Supplier" class="control-label required"></label>
+        <vc:product-supplier id="Suppliers" name="Suppliers" selected-value="@Model.SupplierId" />
+        <input asp-for="SupplierId" id="SupplierId" type="hidden" class="form-control input-setup" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Category" class="control-label required"></label>
+        <vc:product-categories id="Categories" name="Categories" selected-value="@Model.CategoryId" />
+        <input asp-for="CategoryId" id="CategoryId" type="hidden" class="form-control input-setup" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control input-setup" />
+    </div>
+    <div class="form-group">
+        <label asp-for="StockQuantity" class="control-label"></label>
+        <input asp-for="StockQuantity" class="form-control input-setup" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ExpirationDate" class="control-label"></label>
+        <input asp-for="ExpirationDate" class="form-control" type="date" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Unit" class="control-label"></label>
+        <input asp-for="Unit" class="form-control input-setup" />
+    </div>
+   
+</div>
